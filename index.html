@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>광고 소재 변환기 | 영상을 매체별 규격으로 바로 변환</title>
-    <meta name="description" content="광고 영상을 9:16, 4:5, 1:1 등 매체별 규격으로 변환합니다. 남는 여백은 블러 배경이나 배너로 채웁니다. 영상이 서버로 전송되지 않아 안전하고 빠릅니다.">
+    <title>영상 비율 변환기 | 16:9 → 9:16 릴스·틱톡 규격 무료 변환</title>
+    <meta name="description" content="영상 비율을 9:16(릴스·틱톡), 4:5, 1:1 등 매체별 규격으로 무료 변환합니다. 남는 여백은 블러 배경이나 배너로 채우고 MP4로 저장됩니다. 설치·회원가입 없이, 영상을 서버에 올리지 않고 브라우저에서 바로 처리합니다.">
 
     <meta property="og:type" content="website">
-    <meta property="og:title" content="광고 소재 변환기 — 영상을 매체별 규격으로 바로 변환">
-    <meta property="og:description" content="릴스·틱톡·피드 규격을 클릭 몇 번으로. 영상은 서버로 올라가지 않고 브라우저에서 바로 처리됩니다.">
+    <meta property="og:title" content="영상 비율 변환기 — 16:9를 9:16·4:5·1:1로 무료 변환">
+    <meta property="og:description" content="릴스·틱톡·인스타 피드 규격을 클릭 몇 번으로. 여백은 블러나 배너로 채우고 MP4로 저장됩니다. 영상은 서버로 올라가지 않습니다.">
     <meta property="og:url" content="https://simple-ad-resizer.netlify.app/">
     <meta property="og:image" content="https://simple-ad-resizer.netlify.app/og.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -80,6 +80,9 @@
         .logo-box { display: flex; align-items: center; gap: 12px; font-size: 18px; font-weight: 700; white-space: nowrap; }
         .version-badge { font-size: 12px; font-weight: 400; color: var(--accent-cyan); border: 1px solid var(--border-color); padding: 2px 8px; border-radius: 99px; }
         .header-note { font-size: 13px; color: #10B981; font-weight: 600; text-align: right; line-height: 1.4; }
+        .header-right { display: flex; align-items: center; gap: 14px; }
+        .lang-btn { background: transparent; border: 1px solid var(--border-color); color: var(--text-dim); border-radius: 8px; padding: 6px 12px; font-size: 12px; font-weight: 700; font-family: inherit; cursor: pointer; flex-shrink: 0; }
+        .lang-btn:hover { border-color: var(--accent-blue); color: var(--text-main); }
 
         main { display: flex; flex: 1; overflow: hidden; }
 
@@ -190,14 +193,14 @@
 <body>
     <!-- 모바일 전용 안내 (PC에서는 표시되지 않음) -->
     <div class="mobile-gate">
-        <div class="mg-logo">광고 소재 변환기</div>
-        <h2 class="mg-title">영상 하나로<br>모든 매체의 규격을 맞추다</h2>
-        <p class="mg-desc">16:9로 만든 광고 영상을 릴스·틱톡(9:16), 인스타 피드(4:5, 1:1) 규격으로 바꿔줍니다. 남는 여백은 블러 배경이나 배너로 채웁니다.</p>
+        <div class="mg-logo" data-i18n="appName">광고 소재 변환기</div>
+        <h2 class="mg-title" data-i18n-html="mgTitle">영상 하나로<br>모든 매체의 규격을 맞추다</h2>
+        <p class="mg-desc" data-i18n="hintDesc">16:9로 만든 광고 영상을 릴스·틱톡(9:16), 인스타 피드(4:5, 1:1) 규격으로 바꿔줍니다. 남는 여백은 블러 배경이나 배너로 채웁니다.</p>
 
         <div class="mg-visual">
             <div>
                 <div class="mg-box wide"><div class="core"></div></div>
-                <div class="mg-caption">16:9 원본</div>
+                <div class="mg-caption" data-i18n="capSource">16:9 원본</div>
             </div>
             <div class="mg-arrow">→</div>
             <div>
@@ -206,38 +209,41 @@
                     <div class="bar bottom"></div>
                     <div class="core"></div>
                 </div>
-                <div class="mg-caption">9:16 변환</div>
+                <div class="mg-caption" data-i18n="capResult">9:16 변환</div>
             </div>
         </div>
 
         <ul class="mg-list">
-            <li>영상이 서버로 올라가지 않습니다</li>
-            <li>로그인·설치 없이 바로 사용</li>
-            <li>MP4로 저장, 소리 포함</li>
+            <li data-i18n="benefit1">영상이 서버로 올라가지 않습니다</li>
+            <li data-i18n="benefit2">로그인·설치 없이 바로 사용</li>
+            <li data-i18n="benefit3m">MP4로 저장, 소리 포함</li>
         </ul>
 
-        <div class="mg-notice">
+        <div class="mg-notice" data-i18n-html="mgNotice">
             영상 변환은 <strong>PC 브라우저</strong>에서만 가능합니다.<br>
             아래 버튼으로 주소를 복사해 컴퓨터에서 열어주세요.
         </div>
 
-        <button class="mg-copy" id="mgCopy">🔗 주소 복사하기</button>
+        <button class="mg-copy" id="mgCopy" data-i18n="mgCopyBtn">🔗 주소 복사하기</button>
         <div class="mg-copied" id="mgCopied"></div>
     </div>
 
     <header>
-        <h1 class="logo-box">광고 소재 변환기 <span class="version-badge">Beta</span></h1>
-        <div class="header-note">🔒 영상이 서버로 전송되지 않습니다 · 브라우저에서 바로 변환</div>
+        <h1 class="logo-box"><span data-i18n="appName">광고 소재 변환기</span> <span class="version-badge">Beta</span></h1>
+        <div class="header-right">
+            <div class="header-note" data-i18n="headerNote">🔒 영상이 서버로 전송되지 않습니다 · 브라우저에서 바로 변환</div>
+            <button class="lang-btn" id="langBtn" type="button">EN</button>
+        </div>
     </header>
 
     <main>
         <aside>
             <div class="step-container">
-                <div class="step-header"><div class="step-number">1</div>원본 영상 업로드</div>
+                <div class="step-header"><div class="step-number">1</div><span data-i18n="step1">원본 영상 업로드</span></div>
                 <div class="box-surface">
                     <div class="upload-zone" onclick="document.getElementById('videoUpload').click()">
                         <div style="font-size: 24px; margin-bottom: 8px;">📁</div>
-                        <div style="font-size: 14px; font-weight: 500;">동영상 선택 (용량 제한 없음)</div>
+                        <div style="font-size: 14px; font-weight: 500;" data-i18n="pickVideo">동영상 선택 (용량 제한 없음)</div>
                         <input type="file" id="videoUpload" class="hidden" accept="video/*">
                     </div>
                     <div id="uploadStatus" class="status-text"></div>
@@ -247,12 +253,12 @@
                         <button class="btn-outline" onclick="setRatio('src', '4:5')">4:5</button>
                         <button class="btn-outline" onclick="setRatio('src', '1:1')">1:1</button>
                     </div>
-                    <div class="hint-text">업로드하면 실제 영상 비율을 자동으로 읽습니다. 위 버튼은 업로드 전 미리 계산용입니다.</div>
+                    <div class="hint-text" data-i18n="srcHint">업로드하면 실제 영상 비율을 자동으로 읽습니다. 위 버튼은 업로드 전 미리 계산용입니다.</div>
                 </div>
             </div>
 
             <div class="step-container">
-                <div class="step-header"><div class="step-number">2</div>타겟 규격 설정</div>
+                <div class="step-header"><div class="step-number">2</div><span data-i18n="step2">타겟 규격 설정</span></div>
                 <div class="box-surface">
                     <div class="grid-4" id="tgtGrid">
                         <button class="btn-outline" onclick="setRatio('tgt', '16:9')">16:9</button>
@@ -264,33 +270,33 @@
             </div>
 
             <div class="step-container">
-                <div class="step-header"><div class="step-number">3</div>여백 채우기</div>
+                <div class="step-header"><div class="step-number">3</div><span data-i18n="step3">여백 채우기</span></div>
                 <div class="box-surface">
                     <div class="grid-2">
-                        <button id="btnBlur" class="btn-outline selected" onclick="setMethod('blur')">블러 처리</button>
-                        <button id="btnBanner" class="btn-outline" onclick="setMethod('banner')">배너 삽입</button>
+                        <button id="btnBlur" class="btn-outline selected" onclick="setMethod('blur')" data-i18n="blurMode">블러 처리</button>
+                        <button id="btnBanner" class="btn-outline" onclick="setMethod('banner')" data-i18n="bannerMode">배너 삽입</button>
                     </div>
 
                     <div id="bannerGroup" class="banner-slots">
                         <div class="banner-slot" onclick="document.getElementById('banner1').click()">
-                            배너 1
+                            <span data-i18n="banner1">배너 1</span>
                             <span class="rec-size" id="recSize1">사이즈 계산중...</span>
                             <img id="b1Prev"><input type="file" id="banner1" class="hidden" accept="image/*">
                         </div>
                         <div class="banner-slot" onclick="document.getElementById('banner2').click()">
-                            배너 2
+                            <span data-i18n="banner2">배너 2</span>
                             <span class="rec-size" id="recSize2">사이즈 계산중...</span>
                             <img id="b2Prev"><input type="file" id="banner2" class="hidden" accept="image/*">
                         </div>
                     </div>
 
                     <div id="blurGroup" style="margin-top: 16px;">
-                        <span style="font-size: 12px; color: #94A3B8;">블러 강도: <span id="blurVal">40</span>px</span>
+                        <span style="font-size: 12px; color: #94A3B8;"><span data-i18n="blurStrength">블러 강도</span>: <span id="blurVal">40</span>px</span>
                         <input type="range" id="blurInput" min="0" max="100" value="40" style="width: 100%; margin-top: 8px;">
                     </div>
 
                     <div class="format-row">
-                        <span>출력 형식</span>
+                        <span data-i18n="outputFormat">출력 형식</span>
                         <span class="format-value" id="formatLabel">확인 중...</span>
                     </div>
                     <div class="hint-text" id="formatNote"></div>
@@ -302,8 +308,8 @@
                     <div class="progress-text" id="progressText">대기 중... 0%</div>
                     <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressBar"></div></div>
                 </div>
-                <button id="executeBtn" class="btn-primary">✨ 변환 시작</button>
-                <button id="cancelBtn" class="btn-cancel">⏹️ 중지 및 취소</button>
+                <button id="executeBtn" class="btn-primary" data-i18n="startBtn">✨ 변환 시작</button>
+                <button id="cancelBtn" class="btn-cancel" data-i18n="cancelBtn">⏹️ 중지 및 취소</button>
 
                 <div class="ad-slot">
                     <ins class="kakao_ad_area" style="display:none;"
@@ -318,20 +324,94 @@
             <div class="monitor-frame">
                 <canvas id="mainCanvas"></canvas>
                 <div class="preview-hint" id="previewHint">
-                    <h2>영상 하나로 모든 매체의 규격을 맞추다</h2>
-                    <p>16:9로 만든 광고 영상을 릴스·틱톡(9:16), 인스타 피드(4:5, 1:1) 규격으로 바꿔줍니다. 남는 여백은 블러 배경이나 배너로 채웁니다.</p>
+                    <h2 data-i18n="hintTitle">영상 하나로 모든 매체의 규격을 맞추다</h2>
+                    <p data-i18n="hintDesc">16:9로 만든 광고 영상을 릴스·틱톡(9:16), 인스타 피드(4:5, 1:1) 규격으로 바꿔줍니다. 남는 여백은 블러 배경이나 배너로 채웁니다.</p>
                     <ul>
-                        <li>영상이 서버로 올라가지 않습니다</li>
-                        <li>로그인·설치 없이 바로 사용</li>
-                        <li>원본 화질 그대로, 소리 포함</li>
+                        <li data-i18n="benefit1">영상이 서버로 올라가지 않습니다</li>
+                        <li data-i18n="benefit2">로그인·설치 없이 바로 사용</li>
+                        <li data-i18n="benefit3">원본 화질 그대로, 소리 포함</li>
                     </ul>
-                    <p style="font-size: 12px;">왼쪽에서 영상을 올리면 시작합니다.</p>
+                    <p style="font-size: 12px;" data-i18n="hintFooter">왼쪽에서 영상을 올리면 시작합니다.</p>
                 </div>
             </div>
         </section>
     </main>
 
     <script>
+        // ---- 다국어 (한국어 기본 / 그 외 브라우저는 영어) ----
+        // 검색 색인은 한국어 기준을 유지하기 위해 <title>과 meta는 바꾸지 않는다.
+        const I18N = {
+            en: {
+                appName: "Ad Creative Resizer",
+                headerNote: "🔒 Your video never leaves your browser",
+                step1: "Upload source video",
+                pickVideo: "Choose a video (no size limit)",
+                srcHint: "The real aspect ratio is detected on upload. The buttons above are only for previewing sizes beforehand.",
+                step2: "Target format",
+                step3: "Fill the empty space",
+                blurMode: "Blurred background",
+                bannerMode: "Banner image",
+                banner1: "Banner 1",
+                banner2: "Banner 2",
+                blurStrength: "Blur strength",
+                outputFormat: "Output format",
+                startBtn: "✨ Start converting",
+                cancelBtn: "⏹️ Stop and cancel",
+                hintTitle: "One video, every platform format",
+                hintDesc: "Turn your 16:9 ad into Reels/TikTok (9:16) or Instagram feed (4:5, 1:1). The empty space is filled with a blurred background or your own banners.",
+                benefit1: "Your video is never uploaded to a server",
+                benefit2: "No sign-up, no install",
+                benefit3: "Original quality, audio included",
+                benefit3m: "Saves as MP4 with audio",
+                hintFooter: "Upload a video on the left to begin.",
+                mgTitle: "One video,<br>every platform format",
+                capSource: "16:9 source",
+                capResult: "9:16 result",
+                mgNotice: "Converting requires a <strong>desktop browser</strong>.<br>Copy the link below and open it on your computer.",
+                mgCopyBtn: "🔗 Copy link",
+                // 자바스크립트에서 쓰는 문구
+                needVideo: "Please upload a video first.",
+                noRecorder: "This browser cannot record video.",
+                fmtUnsupported: "Not supported",
+                fmtUnsupportedNote: "This browser cannot record video. Please use the latest Chrome.",
+                fmtMp4Note: "Ready to upload to Meta, TikTok and YouTube as-is.",
+                fmtWebmNote: "This browser cannot record MP4, so the file is saved as WebM. Most ad platforms require MP4 — use the latest Chrome to get MP4.",
+                progress: "🔥 Converting... ",
+                doneMsg: "✨ Done! Saved as ",
+                canceled: "🛑 Canceled.",
+                noMargin: "No empty space",
+                left: "Left", right: "Right", top: "Top", bottom: "Bottom",
+                copied: "Copied! Paste it on your computer.",
+                waiting: "Waiting... 0%"
+            }
+        };
+
+        // 저장된 선택이 있으면 그것을, 없으면 브라우저 언어로 판단(한국어면 ko, 그 외 en)
+        let LANG = localStorage.getItem('lang')
+            || ((navigator.language || '').toLowerCase().startsWith('ko') ? 'ko' : 'en');
+
+        function applyLang() {
+            document.documentElement.lang = LANG;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                if (!el.dataset.ko) el.dataset.ko = el.textContent;
+                el.textContent = LANG === 'ko' ? el.dataset.ko : (I18N.en[el.dataset.i18n] || el.dataset.ko);
+            });
+            document.querySelectorAll('[data-i18n-html]').forEach(el => {
+                if (!el.dataset.koHtml) el.dataset.koHtml = el.innerHTML;
+                el.innerHTML = LANG === 'ko' ? el.dataset.koHtml : (I18N.en[el.dataset.i18nHtml] || el.dataset.koHtml);
+            });
+            document.getElementById('langBtn').textContent = LANG === 'ko' ? 'EN' : '한국어';
+            if (typeof showFormatLabel === 'function') showFormatLabel();
+            if (typeof calcBannerRecommendations === 'function') calcBannerRecommendations();
+        }
+
+        document.getElementById('langBtn').onclick = () => {
+            LANG = LANG === 'ko' ? 'en' : 'ko';
+            localStorage.setItem('lang', LANG);
+            applyLang();
+            track('lang_switch', { to: LANG });
+        };
+
         // ---- 이용 통계 ----
         // 파일명·영상 내용 등 사용자 자료는 절대 보내지 않는다(광고 소재는 기밀인 경우가 많음)
         function track(name, params) {
@@ -363,7 +443,7 @@
             const msg = document.getElementById('mgCopied');
             try {
                 await navigator.clipboard.writeText(location.href.split(/[?#]/)[0]);
-                msg.textContent = '복사됐습니다! PC에서 붙여넣어 주세요';
+                msg.textContent = LANG === 'ko' ? '복사됐습니다! PC에서 붙여넣어 주세요' : I18N.en.copied;
             } catch {
                 msg.textContent = location.href.split(/[?#]/)[0];
             }
@@ -393,25 +473,33 @@
         const OUT_MIME = pickMime();
         const OUT_EXT = OUT_MIME.includes('mp4') ? 'mp4' : 'webm';
 
-        (function showFormat() {
+        function showFormatLabel() {
+            const ko = LANG === 'ko';
             const label = document.getElementById('formatLabel');
             const note = document.getElementById('formatNote');
             if (!OUT_MIME) {
-                label.textContent = '지원 안 됨';
+                label.textContent = ko ? '지원 안 됨' : I18N.en.fmtUnsupported;
                 label.classList.add('format-warn');
-                note.textContent = '이 브라우저는 영상 녹화를 지원하지 않습니다. 크롬 최신 버전을 사용해주세요.';
+                note.textContent = ko
+                    ? '이 브라우저는 영상 녹화를 지원하지 않습니다. 크롬 최신 버전을 사용해주세요.'
+                    : I18N.en.fmtUnsupportedNote;
                 document.getElementById('executeBtn').disabled = true;
                 return;
             }
             if (OUT_EXT === 'mp4') {
                 label.textContent = 'MP4 (H.264)';
-                note.textContent = '메타·틱톡·유튜브에 그대로 업로드할 수 있는 형식입니다.';
+                note.textContent = ko
+                    ? '메타·틱톡·유튜브에 그대로 업로드할 수 있는 형식입니다.'
+                    : I18N.en.fmtMp4Note;
             } else {
                 label.textContent = 'WebM';
                 label.classList.add('format-warn');
-                note.textContent = '이 브라우저는 MP4 녹화를 지원하지 않아 WebM으로 저장됩니다. 광고 매체는 대부분 MP4를 요구하므로, 크롬 최신 버전에서 사용하시면 MP4로 저장됩니다.';
+                note.textContent = ko
+                    ? '이 브라우저는 MP4 녹화를 지원하지 않아 WebM으로 저장됩니다. 광고 매체는 대부분 MP4를 요구하므로, 크롬 최신 버전에서 사용하시면 MP4로 저장됩니다.'
+                    : I18N.en.fmtWebmNote;
             }
-        })();
+        }
+        showFormatLabel();
 
         // ---- 여백(레터박스) 영역 계산: 배너 권장 사이즈와 실제 렌더가 같은 값을 쓴다 ----
         function getLayout() {
@@ -438,14 +526,17 @@
         }
 
         function calcBannerRecommendations() {
+            const ko = LANG === 'ko';
+            const W = { none: ko ? '여백 없음' : I18N.en.noMargin, left: ko ? '좌측' : 'Left',
+                        right: ko ? '우측' : 'Right', top: ko ? '상단' : 'Top', bottom: ko ? '하단' : 'Bottom' };
             const { cw, ch, offX, offY } = getLayout();
-            let rec1 = '여백 없음', rec2 = '여백 없음';
+            let rec1 = W.none, rec2 = W.none;
             if (offX > 1) {
-                rec1 = `좌측: ${offX} x ${ch}px`;
-                rec2 = `우측: ${offX} x ${ch}px`;
+                rec1 = `${W.left}: ${offX} x ${ch}px`;
+                rec2 = `${W.right}: ${offX} x ${ch}px`;
             } else if (offY > 1) {
-                rec1 = `상단: ${cw} x ${offY}px`;
-                rec2 = `하단: ${cw} x ${offY}px`;
+                rec1 = `${W.top}: ${cw} x ${offY}px`;
+                rec2 = `${W.bottom}: ${cw} x ${offY}px`;
             }
             document.getElementById('recSize1').innerText = rec1;
             document.getElementById('recSize2').innerText = rec2;
@@ -521,8 +612,8 @@
         calcBannerRecommendations();
 
         document.getElementById('executeBtn').onclick = async () => {
-            if (!state.videoFile) return alert("동영상을 업로드해주세요!");
-            if (!OUT_MIME) return alert("이 브라우저는 영상 녹화를 지원하지 않습니다.");
+            if (!state.videoFile) return alert(LANG === 'ko' ? "동영상을 업로드해주세요!" : I18N.en.needVideo);
+            if (!OUT_MIME) return alert(LANG === 'ko' ? "이 브라우저는 영상 녹화를 지원하지 않습니다." : I18N.en.noRecorder);
 
             state.active = true;
             track('convert_start', { target: state.tgt, method: state.method });
@@ -614,7 +705,8 @@
                 if (video.duration && isFinite(video.duration)) {
                     const pct = Math.min(100, Math.round((video.currentTime / video.duration) * 100));
                     document.getElementById('progressBar').style.width = pct + '%';
-                    document.getElementById('progressText').innerText = `🔥 변환 중... ${pct}%`;
+                    document.getElementById('progressText').innerText =
+                        (LANG === 'ko' ? '🔥 변환 중... ' : I18N.en.progress) + pct + '%';
                 }
 
                 rafId = requestAnimationFrame(renderLoop);
@@ -631,7 +723,9 @@
             document.getElementById('executeBtn').style.display = 'block';
             document.getElementById('cancelBtn').style.display = 'none';
             document.getElementById('progressBar').style.width = '100%';
-            document.getElementById('progressText').innerText = `✨ 완료! ${OUT_EXT.toUpperCase()} 파일이 저장되었습니다`;
+            document.getElementById('progressText').innerText = LANG === 'ko'
+                ? `✨ 완료! ${OUT_EXT.toUpperCase()} 파일이 저장되었습니다`
+                : I18N.en.doneMsg + OUT_EXT.toUpperCase();
         }
 
         document.getElementById('cancelBtn').onclick = () => {
@@ -639,10 +733,14 @@
             state.active = false;
             if (mediaRecorder && mediaRecorder.state === 'recording') mediaRecorder.stop();
             cleanup();
-            document.getElementById('progressText').innerText = '🛑 작업이 취소되었습니다.';
+            document.getElementById('progressText').innerText =
+                LANG === 'ko' ? '🛑 작업이 취소되었습니다.' : I18N.en.canceled;
             document.getElementById('progressBar').style.background = '#EF4444';
             setTimeout(() => location.reload(), 1500);
         };
+
+        // 모든 준비가 끝난 뒤 언어를 적용한다
+        applyLang();
     </script>
 </body>
 </html>
