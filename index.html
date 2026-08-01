@@ -94,6 +94,11 @@
         .preview-hint ul { list-style: none; font-size: 13px; color: var(--text-dim); line-height: 2; text-align: left; }
         .preview-hint li::before { content: "✓ "; color: var(--accent-cyan); font-weight: 700; }
 
+        /* 광고: 버튼과 간격을 둬서 실수 클릭을 막는다.
+           여백을 ins에 주어, 광고가 없을 때(display:none)는 자리를 전혀 차지하지 않는다 */
+        .ad-slot { display: flex; justify-content: center; }
+        .ad-slot ins { margin-bottom: 20px; }
+
         .hidden { display: none !important; }
 
         /* ---- 모바일: 영상 변환이 불가한 환경이므로, 무슨 도구인지 설명하고 PC 이용을 안내한다 ---- */
@@ -251,6 +256,13 @@
             </div>
 
             <div style="margin-top: auto;">
+                <div class="ad-slot">
+                    <ins class="kakao_ad_area" style="display:none;"
+                         id="adUnit"
+                         data-ad-width="320"
+                         data-ad-height="50"></ins>
+                </div>
+
                 <div id="progressWrapper" class="progress-wrapper">
                     <div class="progress-text" id="progressText">대기 중... 0%</div>
                     <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressBar"></div></div>
@@ -278,6 +290,22 @@
     </main>
 
     <script>
+        // ---- 광고 (애드핏) ----
+        // 애드핏에서 이 도메인으로 매체를 등록하고 발급받은 광고단위 코드를 넣으면 노출된다.
+        const AD_UNIT = "";
+
+        (function loadAd() {
+            const isLocal = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+            // 모바일에서는 앱 화면 자체가 숨겨지므로 광고도 부르지 않는다(무효 노출 방지)
+            const isDesktop = window.innerWidth > 900;
+            if (!AD_UNIT || isLocal || !isDesktop) return;
+            document.getElementById('adUnit').setAttribute('data-ad-unit', AD_UNIT);
+            const s = document.createElement('script');
+            s.src = '//t1.daumcdn.net/kas/static/ba.min.js';
+            s.async = true;
+            document.body.appendChild(s);
+        })();
+
         // 모바일 안내의 주소 복사
         document.getElementById('mgCopy').onclick = async () => {
             const msg = document.getElementById('mgCopied');
