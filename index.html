@@ -97,7 +97,7 @@
         /* 광고: 버튼과 간격을 둬서 실수 클릭을 막는다.
            여백을 ins에 주어, 광고가 없을 때(display:none)는 자리를 전혀 차지하지 않는다 */
         .ad-slot { display: flex; justify-content: center; }
-        .ad-slot ins { margin-bottom: 20px; }
+        .ad-slot ins { margin-top: 24px; }
 
         .hidden { display: none !important; }
 
@@ -256,19 +256,19 @@
             </div>
 
             <div style="margin-top: auto;">
-                <div class="ad-slot">
-                    <ins class="kakao_ad_area" style="display:none;"
-                         id="adUnit"
-                         data-ad-width="320"
-                         data-ad-height="50"></ins>
-                </div>
-
                 <div id="progressWrapper" class="progress-wrapper">
                     <div class="progress-text" id="progressText">대기 중... 0%</div>
                     <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressBar"></div></div>
                 </div>
                 <button id="executeBtn" class="btn-primary">✨ 변환 시작</button>
                 <button id="cancelBtn" class="btn-cancel">⏹️ 중지 및 취소</button>
+
+                <div class="ad-slot">
+                    <ins class="kakao_ad_area" style="display:none;"
+                         id="adUnit"
+                         data-ad-width="300"
+                         data-ad-height="250"></ins>
+                </div>
             </div>
         </aside>
 
