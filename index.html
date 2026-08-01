@@ -19,6 +19,23 @@
     <!-- 별도 파일 없이 동작하는 파비콘 -->
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B0F19'/%3E%3Crect x='14' y='10' width='16' height='44' rx='3' fill='%2300F0FF'/%3E%3Crect x='36' y='22' width='16' height='20' rx='3' fill='%233B82F6'/%3E%3C/svg%3E">
 
+    <script>
+        // GA4 측정 ID (발급받으면 여기에 입력)
+        window.GA_ID = "";
+        // 로컬에서 테스트한 방문은 실제 통계에 섞이지 않게 제외
+        if (/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)) window.GA_ID = "";
+        if (window.GA_ID) {
+            var gaScript = document.createElement("script");
+            gaScript.async = true;
+            gaScript.src = "https://www.googletagmanager.com/gtag/js?id=" + window.GA_ID;
+            document.head.appendChild(gaScript);
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = function () { dataLayer.push(arguments); };
+            gtag("js", new Date());
+            gtag("config", window.GA_ID);
+        }
+    </script>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css">
     <style>
         :root {
@@ -290,6 +307,12 @@
     </main>
 
     <script>
+        // ---- 이용 통계 ----
+        // 파일명·영상 내용 등 사용자 자료는 절대 보내지 않는다(광고 소재는 기밀인 경우가 많음)
+        function track(name, params) {
+            if (typeof gtag === "function") gtag("event", name, params || {});
+        }
+
         // ---- 광고 (애드핏) ----
         // 애드핏에서 이 도메인으로 매체를 등록하고 발급받은 광고단위 코드를 넣으면 노출된다.
         const AD_UNIT = "DAN-efb0i5cfi756RlBc";
@@ -307,7 +330,11 @@
         })();
 
         // 모바일 안내의 주소 복사
+        // 모바일로 들어온 방문(도구를 쓸 수 없는 유입)이 얼마나 되는지 파악
+        if (window.matchMedia('(max-width: 900px)').matches) track('mobile_gate_view');
+
         document.getElementById('mgCopy').onclick = async () => {
+            track('copy_link_mobile');
             const msg = document.getElementById('mgCopied');
             try {
                 await navigator.clipboard.writeText(location.href.split(/[?#]/)[0]);
@@ -431,6 +458,7 @@
                 state.vw = probe.videoWidth;
                 state.vh = probe.videoHeight;
                 status.innerText = `✓ ${file.name} (${state.vw}×${state.vh})`;
+                track('upload_video', { size: `${state.vw}x${state.vh}` });
                 calcBannerRecommendations();
                 URL.revokeObjectURL(url);
             };
@@ -472,6 +500,7 @@
             if (!OUT_MIME) return alert("이 브라우저는 영상 녹화를 지원하지 않습니다.");
 
             state.active = true;
+            track('convert_start', { target: state.tgt, method: state.method });
             document.getElementById('previewHint').classList.add('hidden');
             document.getElementById('executeBtn').style.display = 'none';
             document.getElementById('cancelBtn').style.display = 'block';
@@ -504,6 +533,7 @@
             mediaRecorder.onstop = () => {
                 cleanup();
                 if (!state.active) return;
+                track('convert_complete', { target: state.tgt, format: OUT_EXT });
                 const blob = new Blob(chunks, { type: OUT_MIME.split(';')[0] });
                 const a = document.createElement('a');
                 const url = URL.createObjectURL(blob);
@@ -580,6 +610,7 @@
         }
 
         document.getElementById('cancelBtn').onclick = () => {
+            track('convert_cancel', { target: state.tgt });
             state.active = false;
             if (mediaRecorder && mediaRecorder.state === 'recording') mediaRecorder.stop();
             cleanup();
