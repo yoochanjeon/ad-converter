@@ -114,7 +114,8 @@
                 margin: 0 auto;
             }
             .mg-logo { font-size: 22px; font-weight: 800; }
-            .mg-title { font-size: 26px; font-weight: 800; line-height: 1.4; word-break: keep-all; }
+            /* 일반 폰에서는 26px 유지, 아주 좁은 화면(320px 등)에서만 줄여 2줄을 지킨다 */
+            .mg-title { font-size: clamp(20px, 6.7vw, 26px); font-weight: 800; line-height: 1.4; word-break: keep-all; }
             .mg-desc { font-size: 15px; color: var(--text-dim); line-height: 1.75; word-break: keep-all; }
 
             .mg-visual { display: flex; align-items: center; justify-content: center; gap: 14px; margin: 4px 0; }
@@ -143,7 +144,7 @@
     <!-- 모바일 전용 안내 (PC에서는 표시되지 않음) -->
     <div class="mobile-gate">
         <div class="mg-logo">광고 소재 변환기</div>
-        <h1 class="mg-title">영상 하나로<br>모든 매체 규격을</h1>
+        <h1 class="mg-title">영상 하나로<br>모든 매체의 규격을 맞추다</h1>
         <p class="mg-desc">16:9로 만든 광고 영상을 릴스·틱톡(9:16), 인스타 피드(4:5, 1:1) 규격으로 바꿔줍니다. 남는 여백은 블러 배경이나 배너로 채웁니다.</p>
 
         <div class="mg-visual">
@@ -263,7 +264,7 @@
             <div class="monitor-frame">
                 <canvas id="mainCanvas"></canvas>
                 <div class="preview-hint" id="previewHint">
-                    <h2>영상 하나로 모든 매체 규격을</h2>
+                    <h2>영상 하나로 모든 매체의 규격을 맞추다</h2>
                     <p>16:9로 만든 광고 영상을 릴스·틱톡(9:16), 인스타 피드(4:5, 1:1) 규격으로 바꿔줍니다. 남는 여백은 블러 배경이나 배너로 채웁니다.</p>
                     <ul>
                         <li>영상이 서버로 올라가지 않습니다</li>
